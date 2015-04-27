@@ -1,0 +1,10 @@
+CACHE MANIFEST
+# Version 0.6799999
+
+index.html
+
+NETWORK:
+*
+
+FALLBACK:
+/ fallback.html
