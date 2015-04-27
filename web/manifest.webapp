@@ -1,6 +1,6 @@
 {
     "version": "1",
-    "name": "Ilario Junior",
+    "name": "WebSocket",
     "launch_path": "/index.html",
     "description": "Test with websocket",
     "icons": {

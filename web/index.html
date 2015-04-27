@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
+<html lang="pt-br">
     <head>
-        <title>TODO supply a title</title>
+        <title>WebSocket - statelessbr</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style rel="stylesheet">
+        <style>
 
             *{margin:0;padding:0;}
             body{
@@ -18,10 +13,9 @@ and open the template in the editor.
             #receiver{
                 display:inline-block;
             }
-            
+
             .add{
-                
-                /*width: 200px;*/
+
                 width: auto;
                 max-width: 500px;
                 margin-left: 5px;
@@ -30,14 +24,14 @@ and open the template in the editor.
                 background: #eee;
                 color: #06c;
                 overflow: hidden;
-                
-                
+
+
             }
-            
+
             .add:hover {
                 /*overflow: auto;*/
             }
-            
+
             #text{
                 margin-left: 5px;
             }
@@ -48,19 +42,17 @@ and open the template in the editor.
         <div id="receiver"></div>
         <div>
             <input type="text" id="text" placeholder="Ação">
-            
-            <button onclick="WebUtil.sender(this)"> Enviar </button>
-            
-            <input type="checkbox" id="all">
-            <!--<button onclick="WebUtil.sender(this.parentNode.querySelector('#text').value)"> Enviar á Todos</button>-->
-
+            <button onclick="WebUtil.sender(this)"> Enviar </button> 
         </div>
     </body>
 
 
 
     <script type="text/javascript">
+
 //        var wsUri = "ws://" + document.location.host + document.location.pathname + "control";
+//
+//      substitua pelo caminho do seu websocket    
         var wsUri = "ws://192.168.1.35:8080/WebSocket/control";
 
         var websocket = new WebSocket(wsUri);
@@ -71,13 +63,10 @@ and open the template in the editor.
 
         websocket.onopen = function(evt) {
             WebUtil.onOpen('Connectado em: ' + wsUri);
-//            WebUtil.logger(evt);
         };
 
         websocket.onmessage = function(evt) {
-//            websocket.send("oi");
             WebUtil.onMessage(evt.data);
-//            WebUtil.logger(evt);
         };
 
 
@@ -95,10 +84,7 @@ and open the template in the editor.
                 this.escrever(msg);
             },
             sender: function(e) {
-                var text = (e.parentNode.querySelector('#all').checked ? 'SENDALL ' : '') +  e.parentNode.querySelector('#text').value;
-//                this.logger(text);
-                websocket.send(text);
-//                this.escrever(text);
+                websocket.send(e.parentNode.querySelector('#text').value);
             },
             logger: function(msg) {
                 console.info(msg);

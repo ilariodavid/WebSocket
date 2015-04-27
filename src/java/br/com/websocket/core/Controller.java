@@ -1,4 +1,4 @@
-package br.com.apontaentulho.core;
+package br.com.websocket.core;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -11,12 +11,11 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
-/**
- * 
- * @author statelessbr
- * https://github.com/statelessbr
- */
 
+/**
+ *
+ * @author statelessbr https://github.com/statelessbr
+ */
 @ServerEndpoint("/control")
 public class Controller {
 
@@ -51,7 +50,7 @@ public class Controller {
 
     public String selectAllSessions() {
         String id = "Peers conectados: <br>";
-        
+
         // nao substituir por lambda, serios problemas vao acontecer
         for (Session ativo : peers) {
             id += ativo.getId() + " - ativo: " + ativo.isOpen() + "<br/>";
